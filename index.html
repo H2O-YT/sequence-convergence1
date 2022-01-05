@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="h2o-logo.png" type="image/png">
+    <title>Prove sequences convergence</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.js" onload="renderMathInElement(document.body, {delimiters: [
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true},
+        {left: '\\begin{align*}', right: '\\end{align*}', display: true}
+    ]});"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.css" integrity="sha512-4wFGk961cJS2gpSfzy1vU+R8Q93foZOoGgfEDetiClOqNvggdtnRpdCsAgfm8VU9mKkv2unla8RBYwA6hoFwqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="header">
+        <a href="https://www.youtube.com/channel/UCqoZ_UlTisXuqBeyWpG2mvg">
+            <img src="h2o-logo.png" alt="Subscribe!" title="Subscribe!">
+        </a>
+        <h1>Proving convergence of a sequence using the limit definition <a href=""><i class="fab fa-github" alt="Source code" title="Source code"></i></a></h1>
+    </section>
+    <section class="content">
+        <h2>Example 1</h2>
+        <p>
+            As you may know, there're two types of sequences: finite sequences (also known as \(n\)-tuples)
+            and the infinite ones. An infinite sequence is an ordered collection with infinite objects.
+            To describe a sequence \(\{a_n\}\) we use often an equation for the \(n\)th term.
+            We've the following example:
+        </p>
+        <p>
+            \[a_n=\begin{cases}
+            \displaystyle\frac{1}{2}\text{ if $n=1$}\\[.75em]
+            \displaystyle\frac{a_{n-1}}{2}\text{ if $n\geq 2$}
+            \end{cases}\]
+        </p>
+        <p>Equivalent to:</p>
+        <p>\[a_n=\left(\frac{1}{2}\right)^n\]</p>
+        <p>
+            Where \(n\in\mathbb{Z}^+\). Now I've a question for you. If we choose each time a bigger value for
+            \(n\), which number do we approach? This question is equivalent to say "which number does
+            the sequence converge to?". That value is called "the limit of the sequence", whose notation is the
+            following:
+        </p>
+        
+        <p>\[\lim_{n\to\infty}a_n\]</p>
+        <p>To answer this question, we'll see the sequence graph.</p>
+        <img class="manim" src="geometric_graph.png" alt="Graph of this sequence", title="Graph of this sequence">
+        <p>
+            Yeah, it seems \(\displaystyle\lim_{n\to\infty}a_n=0\), so we've an idea for making the proof.
+        </p>
+        <h3>Limit definition</h3>
+        <p>
+            In the real numbers, \(\displaystyle\lim_{n\to\infty}a_n=L\) if the numbers of the sequence become closer
+            and closer to \(L\) and not to any other number. Due to this, the formal definition is the following.
+        </p>
+        <p class="definition">
+            For each real number \(\varepsilon>0\), there exists a natural number \(N\) such that, for every
+            natural number \(n> N\), we have \(|a_n-L|<\varepsilon\).
+        </p>
+        <p>
+            This means if we take a certain \(\varepsilon\) as a distance (it's positive because is a distance),
+            then there is a natural number \(N\) such that if we continue making our \(n\) bigger and bigger,
+            the distance between \(a_n\) and \(L\) will be less than our \(\varepsilon\) (that means they're closer),
+            due to that, the limit of the sequence will be \(L\), I mean the value the sequence approaches when
+            we make our \(n\) very big.
+        </p>
+        <p>So let's make the proof!</p>
+        <p>
+            As you know, the sequence is given by \(\displaystyle a_n=\left(\frac{1}{2}\right)^n\). We can
+            say equivalently:
+        </p>
+        <p>
+            \[a_n=\frac{1}{(1+1)^n}\]
+        </p>
+        <p>
+            We could apply Bernoulli's inequality to the denominator. We know \((1+1)^n\geq (1+n)\), so
+            we've the following:
+        </p>
+        <p>
+            \begin{align*}
+            a_n &\leq \frac{1}{1+n}\\
+            &<\frac{1}{n}
+            \end{align*}
+        </p>
+        <p>
+            We must achieve \(|a_n-0|=a_n<\varepsilon\) (because \(a_n>0\)) and we've \(\displaystyle a_n<\frac{1}{n}\). Also we know if \(n>N\),
+            then \(\frac{1}{n}<\frac{1}{N}\). So there would be some \(N\) that satisfies the following statement:
+        </p>
+        <p>
+            \begin{align*}
+            a_n &<\frac{1}{n}\\
+            &<\frac{1}{N}\\
+            &<\varepsilon
+            \end{align*}
+        </p>
+        <p>
+            We'll achieve it if we find a solution \(N\) in the equation \(\displaystyle\frac{1}{N}<\varepsilon\)!
+            Remember \(N\) is an integer. A solution is the integer \(N=\lceil\frac{1}{N}\rceil\) and since there exists
+            an \(N\), we've proven the limit converges to \(0\). Hurray!
+        </p>
+        <h2>Homework</h2>
+        <p>
+            Prove that the sequence \(\displaystyle x_n=\frac{2n+4}{n}\) has a limit of \(2\). Also, find all terms
+            whose distance from \(2\) is less than \(0.1\).
+        </p>
+    </section>
+</body>
+</html>
